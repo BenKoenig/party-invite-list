@@ -1,0 +1,51 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName" />
+    <div *ngIf="firstName?.touched && firstName?.errors">
+      <p *ngFor="let error of objectKeys(firstName?.errors ?? {})">
+        {{ errorMessages[error] }}
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName" />
+    <div *ngIf="lastName?.touched && lastName?.errors">
+      <p *ngFor="let error of objectKeys(lastName?.errors ?? {})">
+        {{ errorMessages[error] }}
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <label for="phone-number">Phone number: </label>
+    <input id="phone-number" type="text" formControlName="phoneNumber" />
+    <div *ngIf="phoneNumber?.touched && phoneNumber?.errors">
+      <p *ngFor="let error of objectKeys(phoneNumber?.errors ?? {})">
+        {{ errorMessages[error] }}
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <label for="arrival-time">Arrival Time: </label>
+    <input
+      [format]="24"
+      [ngxTimepicker]="picker"
+      formControlName="arrivalTime"
+    />
+    <ngx-material-timepicker
+      id="arrival-time"
+      #picker
+    ></ngx-material-timepicker>
+    <div *ngIf="lastName?.touched && lastName?.errors">
+      <p *ngFor="let error of objectKeys(lastName?.errors ?? {})">
+        {{ errorMessages[error] }}
+      </p>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
