@@ -1,5 +1,7 @@
 # party-invite-list
 
+Party Invite List is a streamlined app designed for hosting events with ease. It features a simple form for listing invitees, capturing essential details like names, phone numbers, and arrival times. The app also offers straightforward options to edit and manage your guest list, ensuring your party planning is as enjoyable as the event itself.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0
 
 ## Updated Docs
