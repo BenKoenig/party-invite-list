@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { InviteFormComponent } from './invite-form/invite-form.component';
 import { InviteDataComponent } from './invite-data/invite-data.component';
 import { ButtonComponent } from './shared/button/button.component';
+import { EditFormComponent } from './edit-form/edit-form.component';
 
 @NgModule({
-  declarations: [AppComponent, InviteFormComponent, InviteDataComponent, ButtonComponent],
+  declarations: [AppComponent, InviteFormComponent, InviteDataComponent, ButtonComponent, EditFormComponent],
   imports: [FormsModule, BrowserModule, ReactiveFormsModule, NgxMaterialTimepickerModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],

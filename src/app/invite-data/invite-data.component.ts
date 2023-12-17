@@ -18,6 +18,7 @@ import { DataService } from '../data.service';
 })
 export class InviteDataComponent implements OnInit {
   allData: any[] = [];
+  selectedId: number | null = null;
 
   constructor(private dataService: DataService) {}
 
@@ -30,6 +31,14 @@ export class InviteDataComponent implements OnInit {
 
   loadAllData() {
     this.allData = this.dataService.getAllData();
+  }
+  
+  handleClick(id: number) {
+    this.selectedId = id;
+  }
+
+  handleClose() {
+    this.selectedId = null;
   }
 
   onDeleteData(id: number) {

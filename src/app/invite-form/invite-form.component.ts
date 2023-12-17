@@ -78,8 +78,7 @@ export class InviteFormComponent implements OnInit {
     const id = uuidv4(); // generates a unique id
     const formValues = this.profileForm.value;
     const dataWithId = { ...formValues, id }; // adds the id to the form data
-
-    console.warn(dataWithId);
     this.dataService.addData(dataWithId);
+    this.profileForm.reset();
   }
 }

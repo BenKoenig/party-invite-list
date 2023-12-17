@@ -7,8 +7,12 @@
         <th class="container__table-header">Last Name</th>
         <th class="container__table-header">Phone Number</th>
         <th class="container__table-header">Arrival Time</th>
-        <th class="container__table-header"></th>
-        <th class="container__table-header"></th>
+        <th class="container__table-header">
+          <span class="sr-only">Edit Section</span>
+        </th>
+        <th class="container__table-header">
+          <span class="sr-only">Delete Section</span>
+        </th>
       </tr>
       <tr *ngFor="let item of allData" class="container__table-row">
         <td class="container__table-data">{{ item.firstName }}</td>
@@ -16,7 +20,7 @@
         <td class="container__table-data">{{ item.phoneNumber }}</td>
         <td class="container__table-data">{{ item.arrivalTime }}</td>
         <td class="container__table-data">
-          <app-button type="button" backgroundColor="#C2D9FF">Edit</app-button>
+          <app-button type="button" (onClick)="handleClick(item.id)" backgroundColor="#C2D9FF">Edit</app-button>
         </td>
         <td class="container__table-data">
           <app-button (onClick)="onDeleteData(item.id)" type="button"
@@ -30,3 +34,6 @@
     <p>No one has been invited yet.</p>
   </div>
 </section>
+<app-edit-form *ngIf="selectedId" [id]="selectedId" (close)="handleClose()"></app-edit-form>
+
+<!-- <app-edit-form [id]=1></app-edit-form> -->

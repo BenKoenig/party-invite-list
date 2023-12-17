@@ -9,9 +9,11 @@ export class ButtonComponent {
   @Input() type: string = 'button';
   @Input() disabled: boolean = false;
   @Input() backgroundColor: string = '#f38d8d';
-  @Output() onClick = new EventEmitter<void>();
+  @Output() onClick = new EventEmitter<void | number>();
 
   handleClick() {
     this.onClick.emit();
   }
+
+
 }
