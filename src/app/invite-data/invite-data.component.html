@@ -1,22 +1,32 @@
 <section class="container">
-    <div *ngIf="allData.length > 0">
-      <h2 class="container--h2">Invited People</h2>
-      <table class="container__table">
-        <tr class="container__table-row">
-          <th class="container__table-header">First Name</th>
-          <th class="container__table-header">Last Name</th>
-          <th class="container__table-header">Phone Number</th>
-          <th class="container__table-header">Arrival Time</th>
-        </tr>
-        <tr *ngFor="let item of allData" class="container__table-row">
-          <td class="container__table-data">{{ item.firstName }}</td>
-          <td class="container__table-data">{{ item.lastName }}</td>
-          <td class="container__table-data">{{ item.phoneNumber }}</td>
-          <td class="container__table-data">{{ item.arrivalTime }}</td>
-        </tr>
-      </table>
-    </div>
-    <div *ngIf="allData.length === 0">
-      <p>No one has been invited yet.</p>
-    </div>
-  </section>
+  <div *ngIf="allData.length > 0">
+    <h2 class="container--h2">Invited People</h2>
+    <table class="container__table">
+      <tr class="container__table-row">
+        <th class="container__table-header">First Name</th>
+        <th class="container__table-header">Last Name</th>
+        <th class="container__table-header">Phone Number</th>
+        <th class="container__table-header">Arrival Time</th>
+        <th class="container__table-header"></th>
+        <th class="container__table-header"></th>
+      </tr>
+      <tr *ngFor="let item of allData" class="container__table-row">
+        <td class="container__table-data">{{ item.firstName }}</td>
+        <td class="container__table-data">{{ item.lastName }}</td>
+        <td class="container__table-data">{{ item.phoneNumber }}</td>
+        <td class="container__table-data">{{ item.arrivalTime }}</td>
+        <td class="container__table-data">
+          <app-button type="button" backgroundColor="#C2D9FF">Edit</app-button>
+        </td>
+        <td class="container__table-data">
+          <app-button (onClick)="onDeleteData(item.id)" type="button"
+            >Delete</app-button
+          >
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="allData.length === 0">
+    <p>No one has been invited yet.</p>
+  </div>
+</section>

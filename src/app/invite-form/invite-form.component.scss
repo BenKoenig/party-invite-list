@@ -55,6 +55,9 @@
         width: fit-content;
         align-self: flex-end;
         color: #000;
+        outline-style: none;
+        border: none;
+        box-shadow: none;
 
         &:hover {
           background-color: #ea3030;

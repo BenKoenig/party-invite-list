@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from '../shared/forbidden-name.directive';
 import { timeValidator } from '../shared/time-validator.directive';
 import { phoneNumberValidator } from '../shared/phone-number-validator.directive';
+import { v4 as uuidv4 } from 'uuid';
 import { DataService } from '../data.service';
 
 /**
@@ -21,7 +22,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./invite-form.component.scss'],
 })
 export class InviteFormComponent implements OnInit {
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
@@ -29,21 +30,18 @@ export class InviteFormComponent implements OnInit {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(25),
-        forbiddenNameValidator(/^frank$/i) // Frank is not welcome to the party
+        forbiddenNameValidator(/^frank$/i), // Frank is not welcome to the party
       ]),
       lastName: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(25)
+        Validators.maxLength(25),
       ]),
       phoneNumber: new FormControl('', [
         Validators.required,
-        phoneNumberValidator
+        phoneNumberValidator,
       ]),
-      arrivalTime: new FormControl('', [
-        Validators.required,
-        timeValidator
-      ]),
+      arrivalTime: new FormControl('', [Validators.required, timeValidator]),
     });
   }
 
@@ -54,10 +52,18 @@ export class InviteFormComponent implements OnInit {
     arrivalTime: new FormControl(''),
   });
 
-  get firstName() { return this.profileForm.get('firstName'); }
-  get lastName() { return this.profileForm.get('lastName'); }
-  get phoneNumber() { return this.profileForm.get('phoneNumber'); }
-  get arrivalTime() { return this.profileForm.get('arrivalTime'); }
+  get firstName() {
+    return this.profileForm.get('firstName');
+  }
+  get lastName() {
+    return this.profileForm.get('lastName');
+  }
+  get phoneNumber() {
+    return this.profileForm.get('phoneNumber');
+  }
+  get arrivalTime() {
+    return this.profileForm.get('arrivalTime');
+  }
 
   objectKeys = Object.keys;
 
@@ -66,10 +72,14 @@ export class InviteFormComponent implements OnInit {
     minlength: 'This field must be at least 2 characters long.',
     maxlength: 'This field cannot be more than 25 characters long.',
     forbiddenName: 'This name is not allowed.',
-    invalidPhoneNumber: 'This phone number is invalid.'
+    invalidPhoneNumber: 'This phone number is invalid.',
   };
   onSubmit() {
-    console.warn(this.profileForm.value);
-    this.dataService.addData(this.profileForm.value);
+    const id = uuidv4(); // generates a unique id
+    const formValues = this.profileForm.value;
+    const dataWithId = { ...formValues, id }; // adds the id to the form data
+
+    console.warn(dataWithId);
+    this.dataService.addData(dataWithId);
   }
 }

@@ -31,4 +31,8 @@ export class InviteDataComponent implements OnInit {
   loadAllData() {
     this.allData = this.dataService.getAllData();
   }
+
+  onDeleteData(id: number) {
+    this.dataService.deleteData(id);
+  }
 }
