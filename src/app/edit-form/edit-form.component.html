@@ -1,121 +1,126 @@
 <section class="form-container">
-    <button (click)="onClose()" class="form-container--close" type="button"><span class="sr-only">Close</span></button>
+  <!-- Close button for the form with an accessibility-friendly label -->
+  <button (click)="onClose()" class="form-container--close" type="button">
+    <span class="sr-only">Close</span>
+  </button>
 
-    <h2 class="form-container--h2">Edit Profile</h2>
-    <form
-      class="form-container__form"
-      [formGroup]="profileForm"
-      (ngSubmit)="onSubmit()"
-    >
-      <div>
-        <div class="form-container__form__item">
-          <label for="first-name">First Name*</label>
-          <input
-            class="form-container__form__item--input"
-            placeholder="Enter the first name"
-            id="first-name"
-            type="text"
-            formControlName="firstName"
-          />
-        </div>
-        <div
-          class="form-container__form__errorlist"
-          *ngIf="firstName?.touched && firstName?.errors"
-        >
-          <p
-            class="form-container__form__errorlist--p"
-            *ngFor="let error of objectKeys(firstName?.errors ?? {})"
-          >
-            {{ errorMessages[error] }}
-          </p>
-        </div>
+  <!-- Form heading -->
+  <h2 class="form-container--h2">Edit Profile</h2>
+  <form
+    class="form-container__form"
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- Form fields are wrapped in divs for styling and structure -->
+    <!-- Each field is an individual FormGroup control -->
+    <!-- FirstName input field -->
+    <div>
+      <div class="form-container__form__item">
+        <label for="first-name">First Name*</label>
+        <input
+          class="form-container__form__item--input"
+          placeholder="Enter the first name"
+          id="first-name"
+          type="text"
+          formControlName="firstName"
+        />
       </div>
-  
-      <div>
-        <div class="form-container__form__item">
-          <label for="last-name">Last Name*</label>
-          <input
-            class="form-container__form__item--input"
-            placeholder="Enter the last name"
-            id="last-name"
-            type="text"
-            formControlName="lastName"
-          />
-        </div>
-        <div
-          class="form-container__form__errorlist"
-          *ngIf="lastName?.touched && lastName?.errors"
+      <div
+        class="form-container__form__errorlist"
+        *ngIf="firstName?.touched && firstName?.errors"
+      >
+        <p
+          class="form-container__form__errorlist--p"
+          *ngFor="let error of objectKeys(firstName?.errors ?? {})"
         >
-          <p
-            class="form-container__form__errorlist--p"
-            *ngFor="let error of objectKeys(lastName?.errors ?? {})"
-          >
-            {{ errorMessages[error] }}
-          </p>
-        </div>
+          {{ errorMessages[error] }}
+        </p>
       </div>
-  
-      <div>
-        <div class="form-container__form__item">
-          <label for="phone-number">Phone number*</label>
-          <input
-            class="form-container__form__item--input"
-            placeholder="Enter the phone number"
-            id="phone-number"
-            type="text"
-            formControlName="phoneNumber"
-          />
-        </div>
-        <div
-          class="form-container__form__errorlist"
-          *ngIf="phoneNumber?.touched && phoneNumber?.errors"
+    </div>
+
+    <div>
+      <div class="form-container__form__item">
+        <label for="last-name">Last Name*</label>
+        <input
+          class="form-container__form__item--input"
+          placeholder="Enter the last name"
+          id="last-name"
+          type="text"
+          formControlName="lastName"
+        />
+      </div>
+      <div
+        class="form-container__form__errorlist"
+        *ngIf="lastName?.touched && lastName?.errors"
+      >
+        <p
+          class="form-container__form__errorlist--p"
+          *ngFor="let error of objectKeys(lastName?.errors ?? {})"
         >
-          <p
-            class="form-container__form__errorlist--p"
-            *ngFor="let error of objectKeys(phoneNumber?.errors ?? {})"
-          >
-            {{ errorMessages[error] }}
-          </p>
-        </div>
+          {{ errorMessages[error] }}
+        </p>
       </div>
-  
-      <div>
-        <div class="form-container__form__item">
-          <label for="arrival-time">Arrival Time*</label>
-          <input
-            [format]="24"
-            [ngxTimepicker]="picker"
-            formControlName="arrivalTime"
-            class="form-container__form__item--input"
-            placeholder="Pick an arrival time"
-          />
-        </div>
-        <ngx-material-timepicker
-          id="arrival-time"
-          #picker
-        ></ngx-material-timepicker>
-        <div
-          class="form-container__form__errorlist"
-          *ngIf="arrivalTime?.touched && arrivalTime?.errors"
+    </div>
+
+    <div>
+      <div class="form-container__form__item">
+        <label for="phone-number">Phone number*</label>
+        <input
+          class="form-container__form__item--input"
+          placeholder="Enter the phone number"
+          id="phone-number"
+          type="text"
+          formControlName="phoneNumber"
+        />
+      </div>
+      <div
+        class="form-container__form__errorlist"
+        *ngIf="phoneNumber?.touched && phoneNumber?.errors"
+      >
+        <p
+          class="form-container__form__errorlist--p"
+          *ngFor="let error of objectKeys(phoneNumber?.errors ?? {})"
         >
-          <p
-            class="form-container__form__errorlist--p"
-            *ngFor="let error of objectKeys(arrivalTime?.errors ?? {})"
-          >
-            {{ errorMessages[error] }}
-          </p>
-        </div>
+          {{ errorMessages[error] }}
+        </p>
       </div>
-  
-      <div class="form-container__form__wrapper">
-        <p>*required</p>
-  
-        <app-button
-          type="submit"
-          [disabled]="!profileForm.valid"
+    </div>
+
+    <div>
+      <div class="form-container__form__item">
+        <label for="arrival-time">Arrival Time*</label>
+        <input
+          [format]="24"
+          [ngxTimepicker]="picker"
+          formControlName="arrivalTime"
+          class="form-container__form__item--input"
+          placeholder="Pick an arrival time"
+        />
+      </div>
+      <ngx-material-timepicker
+        id="arrival-time"
+        #picker
+      ></ngx-material-timepicker>
+      <div
+        class="form-container__form__errorlist"
+        *ngIf="arrivalTime?.touched && arrivalTime?.errors"
+      >
+        <p
+          class="form-container__form__errorlist--p"
+          *ngFor="let error of objectKeys(arrivalTime?.errors ?? {})"
         >
-          Submit
-        </app-button>
+          {{ errorMessages[error] }}
+        </p>
       </div>
-    </form>
-  </section>
+    </div>
+
+    <div class="form-container__form__wrapper">
+      <p>*required</p>
+
+      <!-- Submit button, enabled only if the form is valid -->
+      <app-button type="submit" [disabled]="!profileForm.valid">
+        Submit
+      </app-button>
+    </div>
+  </form>
+</section>

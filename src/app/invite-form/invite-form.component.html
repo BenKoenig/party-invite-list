@@ -1,10 +1,14 @@
 <section class="container">
+  <!-- Form heading -->
   <h2 class="container--h2">Invite Form</h2>
   <form
     class="container__form"
     [formGroup]="profileForm"
     (ngSubmit)="onSubmit()"
   >
+    <!-- Form fields are wrapped in divs for styling and structure -->
+    <!-- Each field is an individual FormGroup control -->
+    <!-- FirstName input field -->
     <div>
       <div class="container__form__item">
         <label for="first-name">First Name*</label>
@@ -108,10 +112,8 @@
     <div class="container__form__wrapper">
       <p>*required</p>
 
-      <app-button
-        type="submit"
-        [disabled]="!profileForm.valid"
-      >
+      <!-- Submit button, enabled only if the form is valid -->
+      <app-button type="submit" [disabled]="!profileForm.valid">
         Submit
       </app-button>
     </div>
