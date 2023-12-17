@@ -5,10 +5,11 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { InvitelistComponent } from './invitelist/invitelist.component';
+import { InviteFormComponent } from './invite-form/invite-form.component';
+import { InviteDataComponent } from './invite-data/invite-data.component';
 
 @NgModule({
-  declarations: [AppComponent, InvitelistComponent],
+  declarations: [AppComponent, InviteFormComponent, InviteDataComponent],
   imports: [FormsModule, BrowserModule, ReactiveFormsModule, NgxMaterialTimepickerModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],

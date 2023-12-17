@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InvitelistComponent } from './invitelist.component';
+import { InviteFormComponent } from './invite-form.component';
 
-describe('Invitelist', () => {
-  let component: InvitelistComponent;
-  let fixture: ComponentFixture<InvitelistComponent>;
+describe('InviteFormComponent', () => {
+  let component: InviteFormComponent;
+  let fixture: ComponentFixture<InviteFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InvitelistComponent ]
+      declarations: [ InviteFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InvitelistComponent);
+    fixture = TestBed.createComponent(InviteFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

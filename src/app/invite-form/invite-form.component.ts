@@ -3,9 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from '../shared/forbidden-name.directive';
 import { timeValidator } from '../shared/time-validator.directive';
 import { phoneNumberValidator } from '../shared/phone-number-validator.directive';
+import { DataService } from '../data.service';
 
 /**
- * InvitelistComponent is a component that handles the invitation list.
+ * InviteFormComponent is a component that handles the invitation list.
  * It includes a form (profileForm) for adding new invitees to the list.
  * The form includes fields for the invitee's first name, last name, phone number, and arrival time.
  * Each field includes validation to ensure that the user input is valid.
@@ -15,12 +16,12 @@ import { phoneNumberValidator } from '../shared/phone-number-validator.directive
  */
 
 @Component({
-  selector: 'app-invitelist',
-  templateUrl: './invitelist.component.html',
-  styleUrls: ['./invitelist.component.scss'],
+  selector: 'app-invite-form',
+  templateUrl: './invite-form.component.html',
+  styleUrls: ['./invite-form.component.scss'],
 })
-export class InvitelistComponent implements OnInit {
-  constructor() {}
+export class InviteFormComponent implements OnInit {
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
@@ -69,5 +70,6 @@ export class InvitelistComponent implements OnInit {
   };
   onSubmit() {
     console.warn(this.profileForm.value);
+    this.dataService.addData(this.profileForm.value);
   }
 }

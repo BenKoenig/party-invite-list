@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "ClashDisplay";
+    src: url("/src/assets/fonts/ClashDisplay-variable.woff2")
+        format("woff2-variations"),
+      url("/src/assets/fonts/ClashDisplay-variable.woff2") format("woff2"),
+      url("/src/assets/fonts/ClashDisplay-variable.ttf") format("truetype"),
+      url("/src/assets/fonts/ClashDisplay-variable.eot")
+        format("embedded-opentype");
+  }
+  
+  body,
+  * {
+    font-family: "ClashDisplay", sans-serif;
+  }
