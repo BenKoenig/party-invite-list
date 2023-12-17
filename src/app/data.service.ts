@@ -36,13 +36,11 @@ export class DataService {
   setData(id: number, newData: any) {
     this.data[id] = newData;
     this.dataUpdated.next([...this.data]); // Notify subscribers
-    console.log('Data set:', this.data);
   }
 
   addData(newData: any) {
     this.data.push(newData);
     this.dataUpdated.next([...this.data]); // Notify subscribers
-    console.log('Data added:', this.data);
   }
 
   getData(id: number) {
