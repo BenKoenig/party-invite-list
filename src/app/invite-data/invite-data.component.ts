@@ -17,30 +17,39 @@ import { DataService } from '../data.service';
   styleUrls: ['./invite-data.component.scss'],
 })
 export class InviteDataComponent implements OnInit {
+  // Array to hold all data
   allData: any[] = [];
+  // Variable to keep track of selected item's ID
   selectedId: number | null = null;
 
+  // Dependency injection of DataService for handling data operations
   constructor(private dataService: DataService) {}
 
+  // Lifecycle hook that gets called after component initialization
   ngOnInit(): void {
-    this.loadAllData();
+    this.loadAllData(); // Load all data when the component is initialized
+    // Subscribe to data updates from the DataService and update the local array accordingly
     this.dataService.getDataUpdateListener().subscribe((data: any[]) => {
       this.allData = data;
     });
   }
 
+  // Method to load all data using the DataService
   loadAllData() {
     this.allData = this.dataService.getAllData();
   }
   
+  // Method to handle click events, sets the selected ID
   handleClick(id: number) {
     this.selectedId = id;
   }
 
+  // Method to handle closing, resets the selected ID
   handleClose() {
     this.selectedId = null;
   }
 
+  // Method to delete data, calls the DataService's delete method
   onDeleteData(id: number) {
     this.dataService.deleteData(id);
   }

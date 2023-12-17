@@ -22,29 +22,36 @@ import { DataService } from '../data.service';
   styleUrls: ['./invite-form.component.scss'],
 })
 export class InviteFormComponent implements OnInit {
+  // Dependency injection of DataService for handling data operations
   constructor(private dataService: DataService) {}
 
+  // Lifecycle hook that gets called after component initialization
   ngOnInit(): void {
+    // Initializes the form with validation rules
     this.profileForm = new FormGroup({
       firstName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(25),
-        forbiddenNameValidator(/^frank$/i), // Frank is not welcome to the party
+        Validators.required, // First name is required
+        Validators.minLength(2), // Minimum length of 2 characters
+        Validators.maxLength(25), // Maximum length of 25 characters
+        forbiddenNameValidator(/^frank$/i), // Custom validator to forbid the name "Frank"
       ]),
       lastName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(25),
+        Validators.required, // Last name is required
+        Validators.minLength(2), // Minimum length of 2 characters
+        Validators.maxLength(25), // Maximum length of 25 characters
       ]),
       phoneNumber: new FormControl('', [
-        Validators.required,
-        phoneNumberValidator,
+        Validators.required, // Phone number is required
+        phoneNumberValidator, // Custom phone number validator
       ]),
-      arrivalTime: new FormControl('', [Validators.required, timeValidator]),
+      arrivalTime: new FormControl('', [
+        Validators.required, // Arrival time is required
+        timeValidator, // Custom time validator
+      ]),
     });
   }
 
+  // Redundant form group initialization - this should be removed
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -52,6 +59,7 @@ export class InviteFormComponent implements OnInit {
     arrivalTime: new FormControl(''),
   });
 
+  // Getter methods to access form controls easily in the template
   get firstName() {
     return this.profileForm.get('firstName');
   }
@@ -65,8 +73,10 @@ export class InviteFormComponent implements OnInit {
     return this.profileForm.get('arrivalTime');
   }
 
+  // Helper method to return object keys
   objectKeys = Object.keys;
 
+  // Object containing error messages for different validation errors
   errorMessages: { [key: string]: string } = {
     required: 'This field is required.',
     minlength: 'This field must be at least 2 characters long.',
@@ -74,11 +84,13 @@ export class InviteFormComponent implements OnInit {
     forbiddenName: 'This name is not allowed.',
     invalidPhoneNumber: 'This phone number is invalid.',
   };
+
+  // Method to handle form submission
   onSubmit() {
-    const id = uuidv4(); // generates a unique id
-    const formValues = this.profileForm.value;
-    const dataWithId = { ...formValues, id }; // adds the id to the form data
-    this.dataService.addData(dataWithId);
-    this.profileForm.reset();
+    const id = uuidv4(); // Generates a unique ID
+    const formValues = this.profileForm.value; // Gets form values
+    const dataWithId = { ...formValues, id }; // Adds the unique ID to the form data
+    this.dataService.addData(dataWithId); // Sends data to the DataService
+    this.profileForm.reset(); // Resets the form after submission
   }
 }
