@@ -17,7 +17,7 @@ import { phoneNumberValidator } from '../shared/phone-number-validator.directive
 @Component({
   selector: 'app-invitelist',
   templateUrl: './invitelist.component.html',
-  styleUrls: ['./invitelist.component.css'],
+  styleUrls: ['./invitelist.component.scss'],
 })
 export class InvitelistComponent implements OnInit {
   constructor() {}

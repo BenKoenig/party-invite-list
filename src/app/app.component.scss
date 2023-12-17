@@ -1,0 +1,13 @@
+.app {
+    display: flex;
+    justify-content: center;
+    background-color: #212121;
+    color: #fff;
+    min-height: 100vh;
+    padding-top: 20px;
+
+    &__container {
+        max-width: 600px;
+        width: 100%;
+    }
+}
