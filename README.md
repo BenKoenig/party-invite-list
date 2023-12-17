@@ -8,6 +8,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 View the updated docs at [Angular Beta Docs](https://angular.dev)
 
+## Installation
+Run `git clone https://github.com/BenKoenig/party-invite-list.git` to clone the repository to your local machine.
+
+cd into the project directory.
+
+Run `npm install` to install the project dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
