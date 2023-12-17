@@ -3,8 +3,22 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from '../shared/forbidden-name.directive';
 import { timeValidator } from '../shared/time-validator.directive';
 import { phoneNumberValidator } from '../shared/phone-number-validator.directive';
-import { v4 as uuidv4 } from 'uuid';
 import { DataService } from '../data.service';
+
+/**
+ * EditFormComponent
+ *
+ * This component provides a form for editing data items. It uses a reactive form
+ * approach, with form controls for each field of the data item. The form includes
+ * validation, with error messages displayed for invalid fields.
+ *
+ * When the form is submitted, the component calls a method on a data service to
+ * update the data item. If the update is successful, the component emits a 'close'
+ * event to notify the parent component that the form should be closed.
+ *
+ * The component also provides a method to close the form without submitting any
+ * changes. This method also emits the 'close' event.
+ */
 
 @Component({
   selector: 'app-edit-form',
@@ -75,9 +89,18 @@ export class EditFormComponent implements OnInit {
   };
 
   onSubmit() {
-    const formValues = this.profileForm.value;
-    this.dataService.editData(this.id, formValues);
-    this.close.emit();
+    if (this.profileForm.valid) {
+      this.dataService
+        .updateData(this.id, this.profileForm.value)
+        .then(() => {
+          // After the data has been updated, emit the close event.
+          this.close.emit();
+        })
+        .catch((error) => {
+          // Handle any errors that occurred while updating the data.
+          console.error('Error updating data:', error);
+        });
+    }
   }
 
   onClose() {

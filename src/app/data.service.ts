@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class DataService {
   private data: any[] = [
     {
-      id: 1,
+      id: uuidv4(),
       firstName: 'John',
       lastName: 'Doe',
       phoneNumber: '+43312312312',
@@ -20,13 +20,6 @@ export class DataService {
       lastName: 'Doe',
       phoneNumber: '+43312312312',
       arrivalTime: '11:00',
-    },
-    {
-      id: uuidv4(),
-      firstName: 'Jack',
-      lastName: 'Smith',
-      phoneNumber: '+43312312312',
-      arrivalTime: '13:00 ',
     },
     {
       id: uuidv4(),
@@ -53,17 +46,21 @@ export class DataService {
     return this.data.find((item) => item.id === id);
   }
 
-  editData(id: number, newData: any) {
-    const index = this.data.findIndex((item) => item.id === id);
-    if (index !== -1) {
-      this.data[index] = newData;
-      this.dataUpdated.next([...this.data]);
-    }
+  updateData(id: number, newData: any): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const index = this.data.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        this.data[index] = newData;
+        this.dataUpdated.next([...this.data]);
+        resolve();
+      } else {
+        reject('No item found with the given id');
+      }
+    });
   }
 
   getAllData() {
     return [...this.data]; // Return a copy of the data
-    console.log(this.data);
   }
 
   getDataUpdateListener() {

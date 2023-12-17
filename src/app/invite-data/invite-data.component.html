@@ -34,6 +34,6 @@
     <p>No one has been invited yet.</p>
   </div>
 </section>
-<app-edit-form *ngIf="selectedId" [id]="selectedId" (close)="handleClose()"></app-edit-form>
 
-<!-- <app-edit-form [id]=1></app-edit-form> -->
+<!-- Edit Form Popup when user clicks "Edit" Button -->
+<app-edit-form *ngIf="selectedId" [id]="selectedId" (close)="handleClose()"></app-edit-form>
